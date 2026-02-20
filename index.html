@@ -3,219 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navaladi Capitals | Financial Services</title>
+    <title>Navaladi Capitals</title>
     <style>
-        :root {
-            --primary: #1b4332; 
-            --accent: #d4af37;  
-            --text-dark: #2d3436;
-            --bg-light: #fdfdfd;
-        }
-
-        body { font-family: 'Georgia', serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
-        
-        header { 
-            background: var(--primary); 
-            color: white; 
-            padding: 40px 20px; 
-            text-align: center; 
-            border-bottom: 5px solid var(--accent); 
-        }
-        .logo-text { font-size: 2.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin: 0; }
-        .sub-text { font-size: 1rem; font-style: italic; opacity: 0.9; margin-top: 5px; }
-
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
-
-        /* Payment Section */
-        .payment-box { 
-            background: #fff; 
-            border-top: 4px solid var(--primary);
-            padding: 20px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            border-radius: 8px;
-        }
-        .highlight { font-weight: bold; color: #b91c1c; font-family: sans-serif; }
-
-        /* Main Layout */
-        .main-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        @media (min-width: 768px) { .main-layout { grid-template-columns: 2fr 1fr; } }
-
-        /* Cards */
-        .card { background: white; padding: 25px; border-radius: 8px; border: 1px solid #e1e1e1; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .card h2 { color: var(--primary); margin-top: 0; border-left: 4px solid var(--accent); padding-left: 15px; font-size: 1.4rem; }
-
-        /* Service Grid (Dynamic Data from Sheets) */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .branch-item { background: #f1f8f5; padding: 15px; border: 1px solid #d1e7dd; border-radius: 6px; }
-        .branch-item strong { color: var(--primary); display: block; margin-bottom: 5px; }
-
-        /* Calculator Styles */
-        .calc-input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .calc-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; cursor: pointer; border-radius: 4px; font-weight: bold; }
-        .calc-btn:hover { background: #2d6a4f; }
-        #result { margin-top: 15px; font-weight: bold; color: var(--primary); text-align: center; font-size: 1.2rem; }
-
-        .footer { text-align: center; padding: 40px; margin-top: 50px; background: var(--primary); color: white; }
+        :root { --primary: #1b4332; --accent: #d4af37; --bg: #f4f4f4; }
+        body { font-family: Arial, sans-serif; margin: 0; background: var(--bg); color: #333; }
+        header { background: var(--primary); color: white; padding: 2rem; text-align: center; border-bottom: 5px solid var(--accent); }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .branch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .branch-item { border: 1px solid #ddd; padding: 15px; border-radius: 5px; background: #fff; }
+        .branch-item strong { color: var(--primary); font-size: 1.1rem; display: block; }
+        .highlight { color: #b91c1c; font-weight: bold; }
+        .calc-input { width: 100%; padding: 10px; margin: 5px 0 15px 0; border: 1px solid #ccc; border-radius: 4px; }
+        .btn { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%; border-radius: 4px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 class="logo-text">Navaladi Capitals</h1>
-    <div class="sub-text">Your Trusted Partner in Financial Growth</div>
+    <h1>Navaladi Capitals</h1>
+    <p>Official Digital Portal</p>
 </header>
 
 <div class="container">
-    
-    <div class="payment-box">
-        <h2 style="margin-top:0; color: var(--primary);">Digital Payment Portal</h2>
-        <p>Official Google Pay Number: <span class="highlight">74026-XXXXX</span></p>
-        <p style="font-size: 0.9rem; color: #555;">Note: Please include <strong>Loan ID</strong> and <strong>Name</strong> in the GPay note section for instant receipt generation.</p>
+    <div class="card">
+        <h2>Digital Payment Portal</h2>
+        <p>GPay Number: <span class="highlight">74026-XXXXX</span></p>
+        <p style="font-size: 0.8rem;">Note: Include Loan ID & Name in GPay notes.</p>
     </div>
 
-    <div class="main-layout">
-        <div>
-            <div class="card">
-                <h2>Our Branch Network</h2>
-                <p>Real-time location data managed via Navaladi Operations Cloud.</p>
-                <div id="branch-list" class="service-grid">
-                    <div class="branch-item">Loading branches...</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2>About Our Services</h2>
-                <p>We provide specialized capital solutions for Small Businesses, Gold Loans, and Personal Finance requirements across the region.</p>
-            </div>
+    <div class="card">
+        <h2>Our Branch Network</h2>
+        <div id="branch-list" class="branch-grid">
+            <p>Loading branches...</p>
         </div>
-
-        <aside>
-            <div class="card">
-                <h2 style="border-left: 4px solid var(--primary);">Interest Calculator</h2>
-                <label>Loan Amount (₹)</label>
-                <input type="number" id="amount" class="calc-input" placeholder="e.g. 50000">
-                <label>Interest Rate (% Per Year)</label>
-                <input type="number" id="rate" class="calc-input" placeholder="e.g. 12">
-                <label>Tenure (Months)</label>
-                <input type="number" id="months" class="calc-input" placeholder="e.g. 12">
-                <button class="calc-btn" onclick="calculateEMI()">Calculate Interest</button>
-                <div id="result"></div>
-            </div>
-
-            <div class="card" style="background: var(--primary); color: white;">
-                <h3 style="color: var(--accent);">Contact Support</h3>
-                <p>Email: info@navaladicapitals.com</p>
-                <p>Phone: +91 74026-XXXXX</p>
-            </div>
-        </aside>
     </div>
-</div>
 
-<div class="footer">
-    &copy; 2026 Navaladi Capitals. All Rights Reserved.
+    <div class="card">
+        <h2>Interest Calculator</h2>
+        <input type="number" id="amt" class="calc-input" placeholder="Amount (₹)">
+        <input type="number" id="rt" class="calc-input" placeholder="Rate (%)">
+        <input type="number" id="time" class="calc-input" placeholder="Months">
+        <button class="btn" onclick="cal()">Calculate</button>
+        <p id="res" style="text-align:center; font-weight:bold; margin-top:10px;"></p>
+    </div>
 </div>
 
 <script>
-    // 1. LOAN CALCULATOR
-    function calculateEMI() {
-        const p = document.getElementById('amount').value;
-        const r = document.getElementById('rate').value / 12 / 100;
-        const n = document.getElementById('months').value;
-        
+    // EMI Calculator
+    function cal() {
+        const p = document.getElementById('amt').value;
+        const r = document.getElementById('rt').value / 12 / 100;
+        const n = document.getElementById('time').value;
         if(p && r && n) {
             const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-            document.getElementById('result').innerHTML = "Monthly EMI: ₹" + emi.toFixed(2);
-        } else {
-            document.getElementById('result').innerHTML = "Please fill all fields";
+            document.getElementById('res').innerText = "Monthly EMI: ₹" + emi.toFixed(2);
         }
     }
 
-    // 2. INSTANT BRANCH LOADING (No Waiting)
-    const manualBranches = [
-        { name: "Cheyyar Head Office", manager: "Senthil S.", phone: "74026-00401" },
-        { name: "Vandavasi Branch", manager: "Prakash R.", phone: "74026-00402" },
-        { name: "Arni Branch", manager: "Loganathan M.", phone: "74026-00405" }
-    ];
-
-    function displayBranches(data) {
-        const container = document.getElementById('branch-list');
-        container.innerHTML = ''; // Remove "Loading..." message
-        
-        data.forEach(branch => {
-            container.innerHTML += `
-                <div class="branch-item">
-                    <strong>${branch.name}</strong>
-                    <small>Manager: ${branch.manager}</small><br>
-                    <small>Contact: ${branch.phone}</small>
-                </div>`;
-        });
-    }
-
-    // Initialize with manual data immediately
-    displayBranches(manualBranches);
-
-    // 3. OPTIONAL: BACKGROUND DATABASE UPDATE
-    // If you ever use a Google Sheet, put the link here. 
-    // If it fails or takes too long, it won't break the page anymore.
-    const sheetUrl = 'YOUR_GOOGLE_SHEET_CSV_LINK_HERE';
-
-    async function syncWithDatabase() {
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3000); // Stop waiting after 3 seconds
-
-            const response = await fetch(sheetUrl, { signal: controller.signal });
-            const data = await response.text();
-            const rows = data.split('\n').slice(1);
-            
-            if(rows.length > 0 && rows[0].trim() !== "") {
-                const updatedBranches = rows.map(row => {
-                    const col = row.split(',');
-                    return { name: col[0], manager: col[1], phone: col[2] };
-                });
-                displayBranches(updatedBranches); // Update UI with fresh data from sheet
-            }
-        } catch (e) {
-            console.log("Using offline branch data.");
-        }
-    }
-
-    syncWithDatabase();
-</script>
-
-    // 2. GOOGLE SHEETS DATABASE LOGIC
-    // Replace the URL below with your "Published to Web" CSV link
+    // Database Logic
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5igMwQkZWRdFNqyoVnDJJcXRFHUkO8F7gSA627crLk68uqjjXFoHzIpEMyexN0GfQ7cpcyKJHYrVG/pub?output=csv';
 
-    async function fetchBranches() {
+    async function getBranches() {
+        const container = document.getElementById('branch-list');
         try {
-            const response = await fetch(sheetUrl);
-            const data = await response.text();
-            const rows = data.split('\n').slice(1); // Skip header row
-            const container = document.getElementById('branch-list');
+            const res = await fetch(sheetUrl);
+            const text = await res.text();
+            const rows = text.split('\n').slice(1);
             
-            if(rows.length > 0 && rows[0] !== "") {
-                container.innerHTML = ''; // Clear loading text
-                rows.forEach(row => {
-                    const col = row.split(',');
-                    if(col[0]) {
-                        container.innerHTML += `
-                            <div class="branch-item">
-                                <strong>${col[0]}</strong>
-                                <small>Manager: ${col[1] || 'N/A'}</small><br>
-                                <small>Contact: ${col[2] || 'N/A'}</small>
-                            </div>`;
-                    }
-                });
-            }
-        } catch (error) {
-            console.log("To see live data, publish your Google Sheet as CSV and paste link in the script.");
+            container.innerHTML = ''; 
+            rows.forEach(row => {
+                const col = row.split(',');
+                if(col[0] && col[0].trim() !== "") {
+                    container.innerHTML += `
+                        <div class="branch-item">
+                            <strong>${col[0]}</strong>
+                            Manager: ${col[1] || 'TBD'}<br>
+                            Contact: ${col[2] || '74026-XXXXX'}
+                        </div>`;
+                }
+            });
+        } catch (e) {
+            container.innerHTML = '<p>Offline: Cheyyar Head Office - 74026-XXXXX</p>';
         }
     }
-
-    fetchBranches();
+    getBranches();
 </script>
-
 </body>
 </html>
