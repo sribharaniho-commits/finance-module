@@ -3,53 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Banking</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Navaladi Capitals - Branch Locations</title>
+    <style>
+        :root {
+            --primary: #1b4332; /* Deep Trust Green */
+            --accent: #d4af37;  /* Metallic Gold */
+            --text-dark: #2d3436;
+            --bg-light: #fdfdfd;
+        }
+
+        body { font-family: 'Georgia', serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        
+        /* Header Section */
+        header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom: 5px solid var(--accent); 
+        }
+        .logo-text { font-size: 2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+        .sub-text { font-size: 0.9rem; font-style: italic; opacity: 0.8; margin-top: 5px; }
+
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
+
+        /* Payment/Announcement Box */
+        .payment-box { 
+            background: #fff; 
+            border: 1px solid #ddd;
+            border-top: 4px solid var(--primary);
+            padding: 20px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+        .payment-box h2 { color: var(--primary); margin-top: 0; font-size: 1.3rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .highlight { font-weight: bold; color: #b91c1c; }
+
+        /* Main Grid */
+        .main-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .main-layout { grid-template-columns: 2fr 1fr; } }
+
+        /* Branch Details */
+        .card { background: white; padding: 25px; border-radius: 4px; border: 1px solid #e1e1e1; }
+        .card h2 { color: var(--primary); margin-top: 0; border-left: 4px solid var(--accent); padding-left: 15px; }
+
+        /* Service Area Grid */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 20px; }
+        .area-tag { background: #f1f8f5; padding: 10px; text-align: center; font-size: 0.85rem; border: 1px solid #d1e7dd; border-radius: 3px; }
+
+        /* Sidebar Navigation */
+        .nav-sidebar { background: #f8f9fa; padding: 20px; border-radius: 4px; border: 1px solid #eee; }
+        .nav-sidebar h3 { font-size: 1.1rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-top: 0; }
+        .nav-sidebar ul { list-style: none; padding: 0; }
+        .nav-sidebar ul li { padding: 12px 0; border-bottom: 1px solid #eee; }
+        .nav-sidebar a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .nav-sidebar a:hover { color: var(--accent); }
+
+        .footer { text-align: center; padding: 30px; margin-top: 50px; background: var(--primary); color: white; font-size: 0.85rem; }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Corporate Bank</div>
+
+<header>
+    <div class="logo-text">Navaladi Capitals</div>
+    <div class="sub-text">Empowering Your Financial Growth Since 2026</div>
+</header>
+
+<div class="container">
+    
+    <div class="payment-box">
+        <h2>Digital Payment Notice</h2>
+        <p>For your convenience, <strong>Navaladi Capitals</strong> accepts payments via Google Pay and All Major Credit/Debit Cards.</p>
+        <p>Official Google Pay ID: <span class="highlight">navaladicapitals@okaxis</span></p>
+        <p>Google Pay Number: <span class="highlight">74026-XXXXX</span></p>
+        <p style="background: #fff8e1; padding: 10px; border: 1px dashed #ffcc00; font-size: 0.9rem;">
+            <strong>Requirement:</strong> While paying, please mention your <strong>Loan ID, Customer Name, and Location</strong> in the payment notes.
+        </p>
+    </div>
+
+    <div class="main-layout">
+        <div class="card">
+            <h2>Cheyyar Head Office</h2>
+            <p><strong>Location:</strong> Navaladi Plaza, Main Road, Cheyyar - 604407.</p>
+            <p><strong>Contact:</strong> +91 74026-XXXXX</p>
+            <p><strong>Working Hours:</strong> 9:30 AM - 6:30 PM (Mon-Sat)</p>
+
+            <h3 style="margin-top: 30px;">Areas Covered</h3>
+            <div class="service-grid">
+                <div class="area-tag">Cheyyar Town</div>
+                <div class="area-tag">Anakkavoor</div>
+                <div class="area-tag">Vembakkam</div>
+                <div class="area-tag">Perungattur</div>
+                <div class="area-tag">Moranam</div>
+                <div class="area-tag">Thellar</div>
+                <div class="area-tag">Dusi</div>
+                <div class="area-tag">Mamandur</div>
+            </div>
+        </div>
+
+        <div class="nav-sidebar">
+            <h3>Our Services</h3>
             <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#account">Account Info</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#">Personal Finance</a></li>
+                <li><a href="#">Business Capital</a></li>
+                <li><a href="#">Gold Loans</a></li>
+                <li><a href="#">Vehicle Refinance</a></li>
             </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="dashboard">
-            <h1>Welcome to Your Dashboard</h1>
-            <div class="account-info">
-                <h2>Account Balance:</h2>
-                <p>₹5,00,000</p>
-            </div>
-            <div class="transaction-history">
-                <h2>Transaction History</h2>
-                <ul>
-                    <li>Deposit: ₹25,000</li>
-                    <li>Withdrawal: ₹10,000</li>
-                </ul>
-            </div>
-        </section>
-        <section id="services">
-            <h2>Our Services</h2>
-            <div class="services-cards">
-                <div class="card">Savings Account</div>
-                <div class="card">Current Account</div>
-                <div class="card">Loans</div>
-                <div class="card">Investment Services</div>
-            </div>
-        </section>
-        <section id="quick-actions">
-            <h2>Quick Actions</h2>
-            <button>Transfer Money</button>
-            <button>Pay Bills</button>
-            <button>Apply for Loan</button>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2026 Corporate Bank. All rights reserved.</p>
-    </footer>
+            <br>
+            <h3>Other Links</h3>
+            <ul>
+                <li><a href="#">About Navaladi Group</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    &copy; 2026 Navaladi Capitals. All Rights Reserved. <br>
+    Your Trusted Partner in Financial Solutions.
+</div>
+
 </body>
 </html>
