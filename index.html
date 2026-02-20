@@ -3,49 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Gowtham Amarjothi Finance - Locations</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
-        nav { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
-        .container { padding: 20px; max-width: 1000px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .balance { font-size: 24px; font-weight: bold; color: #27ae60; }
-        canvas { margin-top: 20px; max-height: 400px; }
+        :root {
+            --primary: #003366; /* Deep blue */
+            --accent: #ffcc00;  /* Gold/Yellow */
+            --text-dark: #333;
+            --bg-light: #f4f4f4;
+        }
+
+        body { font-family: 'Arial', sans-serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        
+        /* Header */
+        header { background: var(--primary); color: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--accent); }
+        .logo-text { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; }
+
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+        /* Payment Notice (Google Pay Section) */
+        .alert-box { background: #fff; border-left: 5px solid #27ae60; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 4px; }
+        .alert-box h2 { color: #27ae60; margin-top: 0; font-size: 1.2rem; }
+        .gpay-number { font-weight: bold; color: #d35400; font-size: 1.1rem; }
+
+        /* Location Grid */
+        .main-content { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 768px) { .main-content { grid-template-columns: 2fr 1fr; } }
+
+        .branch-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .branch-title { color: var(--primary); border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 15px; }
+
+        /* Area Lists */
+        .area-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .area-item { background: #f9f9f9; padding: 8px; border-radius: 4px; font-size: 0.9rem; border: 1px solid #eee; }
+
+        /* Sidebar Sidebar */
+        .sidebar { background: var(--primary); color: white; padding: 20px; border-radius: 8px; height: fit-content; }
+        .sidebar h3 { color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sidebar a { color: white; text-decoration: none; }
+        .sidebar a:hover { color: var(--accent); }
+
+        .footer { text-align: center; padding: 20px; margin-top: 40px; background: #ddd; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<nav><h1>My Finance Module</h1></nav>
+<header>
+    <div class="logo-text">Gowtham Amarjothi Finance</div>
+</header>
 
 <div class="container">
-    <div class="grid">
-        <div class="card"><h3>Total Balance</h3><p class="balance">$12,450.00</p></div>
-        <div class="card"><h3>Monthly Income</h3><p>$4,200.00</p></div>
-        <div class="card"><h3>Expenses</h3><p style="color: #e74c3c;">$2,100.00</p></div>
+    
+    <div class="alert-box">
+        <h2>Payment via Google Pay & Cards</h2>
+        <p>We accept <strong>Google Pay</strong> and <strong>Card Swiping</strong> at our branches.</p>
+        <p>Google Pay Number: <span class="gpay-number">74026-00401</span></p>
+        <small>*Note: When paying via Google Pay, please include your Loan Number, Name, and Village in the "Add a Note" section.</small>
     </div>
 
-    <div class="card" style="margin-top: 20px;">
-        <h3>Spending Analysis</h3>
-        <canvas id="financeChart"></canvas>
+    <div class="main-content">
+        <div class="branch-card">
+            <h2 class="branch-title">Head Office / Cheyyar Branch</h2>
+            <p><strong>Address:</strong> 7/1 Gopal Street, Cheyyar-604407, Thiruvannamalai DT.</p>
+            <p><strong>Contact:</strong> 74026-00401</p>
+            <p><strong>Manager:</strong> Senthil S.</p>
+
+            <h3>Service Collection Areas</h3>
+            <div class="area-lists">
+                <div class="area-item">Anif Nagar</div>
+                <div class="area-item">Arcot Salai</div>
+                <div class="area-item">Arukavoor</div>
+                <div class="area-item">Bus Stand Area</div>
+                <div class="area-item">Neru Nagar</div>
+                <div class="area-item">Paari Nagar</div>
+                <div class="area-item">Maligaipattu</div>
+                <div class="area-item">Vellai-Cheyyar</div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h3>Other Branches</h3>
+            <ul>
+                <li><a href="#">Arungarai Amman Finance</a></li>
+                <li><a href="#">Arungarai Amman Chits</a></li>
+                <li><a href="#">Goodwill Finance</a></li>
+                <li><a href="#">Chengalpattu Branch</a></li>
+                <li><a href="#">Villupuram Branch</a></li>
+            </ul>
+            <br>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Apply for Loan</a></li>
+                <li><a href="#">Management Team</a></li>
+                <li><a href="#">Contact Support</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<script>
-    const ctx = document.getElementById('financeChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Rent', 'Food', 'Utilities', 'Entertainment', 'Savings'],
-            datasets: [{
-                label: 'Expenses ($)',
-                data: [1200, 500, 300, 400, 1000],
-                backgroundColor: ['#3498db', '#e67e22', '#f1c40f', '#9b59b6', '#2ecc71']
-            }]
-        }
-    });
-</script>
+<div class="footer">
+    Copyright &copy; 2026 Gowtham Amarjothi Finance. All Rights Reserved.
+</div>
 
 </body>
 </html>
