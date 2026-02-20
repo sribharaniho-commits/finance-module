@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
+        nav { background: #2c3e50; color: white; padding: 1rem; text-align: center; }
+        .container { padding: 20px; max-width: 1000px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .balance { font-size: 24px; font-weight: bold; color: #27ae60; }
+        canvas { margin-top: 20px; max-height: 400px; }
+    </style>
+</head>
+<body>
+
+<nav><h1>My Finance Module</h1></nav>
+
+<div class="container">
+    <div class="grid">
+        <div class="card"><h3>Total Balance</h3><p class="balance">$12,450.00</p></div>
+        <div class="card"><h3>Monthly Income</h3><p>$4,200.00</p></div>
+        <div class="card"><h3>Expenses</h3><p style="color: #e74c3c;">$2,100.00</p></div>
+    </div>
+
+    <div class="card" style="margin-top: 20px;">
+        <h3>Spending Analysis</h3>
+        <canvas id="financeChart"></canvas>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('financeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Rent', 'Food', 'Utilities', 'Entertainment', 'Savings'],
+            datasets: [{
+                label: 'Expenses ($)',
+                data: [1200, 500, 300, 400, 1000],
+                backgroundColor: ['#3498db', '#e67e22', '#f1c40f', '#9b59b6', '#2ecc71']
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>
