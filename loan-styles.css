@@ -1,0 +1,44 @@
+.loan-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.loan-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.loan-form input, .loan-form select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.loan-table th, .loan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.loan-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .loan-form {
+        width: 100%;
+    }
+
+    .loan-table {
+        font-size: 14px;
+    }
+}
