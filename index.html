@@ -117,7 +117,7 @@
 </div>
 
 <script>
-    // 1. LOAN CALCULATOR LOGIC
+    // 1. LOAN CALCULATOR
     function calculateEMI() {
         const p = document.getElementById('amount').value;
         const r = document.getElementById('rate').value / 12 / 100;
@@ -130,6 +130,59 @@
             document.getElementById('result').innerHTML = "Please fill all fields";
         }
     }
+
+    // 2. INSTANT BRANCH LOADING (No Waiting)
+    const manualBranches = [
+        { name: "Cheyyar Head Office", manager: "Senthil S.", phone: "74026-00401" },
+        { name: "Vandavasi Branch", manager: "Prakash R.", phone: "74026-00402" },
+        { name: "Arni Branch", manager: "Loganathan M.", phone: "74026-00405" }
+    ];
+
+    function displayBranches(data) {
+        const container = document.getElementById('branch-list');
+        container.innerHTML = ''; // Remove "Loading..." message
+        
+        data.forEach(branch => {
+            container.innerHTML += `
+                <div class="branch-item">
+                    <strong>${branch.name}</strong>
+                    <small>Manager: ${branch.manager}</small><br>
+                    <small>Contact: ${branch.phone}</small>
+                </div>`;
+        });
+    }
+
+    // Initialize with manual data immediately
+    displayBranches(manualBranches);
+
+    // 3. OPTIONAL: BACKGROUND DATABASE UPDATE
+    // If you ever use a Google Sheet, put the link here. 
+    // If it fails or takes too long, it won't break the page anymore.
+    const sheetUrl = 'YOUR_GOOGLE_SHEET_CSV_LINK_HERE';
+
+    async function syncWithDatabase() {
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000); // Stop waiting after 3 seconds
+
+            const response = await fetch(sheetUrl, { signal: controller.signal });
+            const data = await response.text();
+            const rows = data.split('\n').slice(1);
+            
+            if(rows.length > 0 && rows[0].trim() !== "") {
+                const updatedBranches = rows.map(row => {
+                    const col = row.split(',');
+                    return { name: col[0], manager: col[1], phone: col[2] };
+                });
+                displayBranches(updatedBranches); // Update UI with fresh data from sheet
+            }
+        } catch (e) {
+            console.log("Using offline branch data.");
+        }
+    }
+
+    syncWithDatabase();
+</script>
 
     // 2. GOOGLE SHEETS DATABASE LOGIC
     // Replace the URL below with your "Published to Web" CSV link
