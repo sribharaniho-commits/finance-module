@@ -3,107 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gowtham Amarjothi Finance - Locations</title>
+    <title>Navaladi Capitals - Branch Locations</title>
     <style>
         :root {
-            --primary: #003366; /* Deep blue */
-            --accent: #ffcc00;  /* Gold/Yellow */
-            --text-dark: #333;
-            --bg-light: #f4f4f4;
+            --primary: #1b4332; /* Deep Trust Green */
+            --accent: #d4af37;  /* Metallic Gold */
+            --text-dark: #2d3436;
+            --bg-light: #fdfdfd;
         }
 
-        body { font-family: 'Arial', sans-serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        body { font-family: 'Georgia', serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
         
-        /* Header */
-        header { background: var(--primary); color: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--accent); }
-        .logo-text { font-size: 1.5rem; font-weight: bold; text-transform: uppercase; }
+        /* Header Section */
+        header { 
+            background: var(--primary); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom: 5px solid var(--accent); 
+        }
+        .logo-text { font-size: 2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+        .sub-text { font-size: 0.9rem; font-style: italic; opacity: 0.8; margin-top: 5px; }
 
-        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
 
-        /* Payment Notice (Google Pay Section) */
-        .alert-box { background: #fff; border-left: 5px solid #27ae60; padding: 15px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 4px; }
-        .alert-box h2 { color: #27ae60; margin-top: 0; font-size: 1.2rem; }
-        .gpay-number { font-weight: bold; color: #d35400; font-size: 1.1rem; }
+        /* Payment/Announcement Box */
+        .payment-box { 
+            background: #fff; 
+            border: 1px solid #ddd;
+            border-top: 4px solid var(--primary);
+            padding: 20px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+        }
+        .payment-box h2 { color: var(--primary); margin-top: 0; font-size: 1.3rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .highlight { font-weight: bold; color: #b91c1c; }
 
-        /* Location Grid */
-        .main-content { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 768px) { .main-content { grid-template-columns: 2fr 1fr; } }
+        /* Main Grid */
+        .main-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .main-layout { grid-template-columns: 2fr 1fr; } }
 
-        .branch-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .branch-title { color: var(--primary); border-bottom: 2px solid var(--accent); display: inline-block; margin-bottom: 15px; }
+        /* Branch Details */
+        .card { background: white; padding: 25px; border-radius: 4px; border: 1px solid #e1e1e1; }
+        .card h2 { color: var(--primary); margin-top: 0; border-left: 4px solid var(--accent); padding-left: 15px; }
 
-        /* Area Lists */
-        .area-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .area-item { background: #f9f9f9; padding: 8px; border-radius: 4px; font-size: 0.9rem; border: 1px solid #eee; }
+        /* Service Area Grid */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 20px; }
+        .area-tag { background: #f1f8f5; padding: 10px; text-align: center; font-size: 0.85rem; border: 1px solid #d1e7dd; border-radius: 3px; }
 
-        /* Sidebar Sidebar */
-        .sidebar { background: var(--primary); color: white; padding: 20px; border-radius: 8px; height: fit-content; }
-        .sidebar h3 { color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px; }
-        .sidebar ul { list-style: none; padding: 0; }
-        .sidebar ul li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .sidebar a { color: white; text-decoration: none; }
-        .sidebar a:hover { color: var(--accent); }
+        /* Sidebar Navigation */
+        .nav-sidebar { background: #f8f9fa; padding: 20px; border-radius: 4px; border: 1px solid #eee; }
+        .nav-sidebar h3 { font-size: 1.1rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-top: 0; }
+        .nav-sidebar ul { list-style: none; padding: 0; }
+        .nav-sidebar ul li { padding: 12px 0; border-bottom: 1px solid #eee; }
+        .nav-sidebar a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .nav-sidebar a:hover { color: var(--accent); }
 
-        .footer { text-align: center; padding: 20px; margin-top: 40px; background: #ddd; font-size: 0.8rem; }
+        .footer { text-align: center; padding: 30px; margin-top: 50px; background: var(--primary); color: white; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-text">Gowtham Amarjothi Finance</div>
+    <div class="logo-text">Navaladi Capitals</div>
+    <div class="sub-text">Empowering Your Financial Growth Since 2026</div>
 </header>
 
 <div class="container">
     
-    <div class="alert-box">
-        <h2>Payment via Google Pay & Cards</h2>
-        <p>We accept <strong>Google Pay</strong> and <strong>Card Swiping</strong> at our branches.</p>
-        <p>Google Pay Number: <span class="gpay-number">74026-00401</span></p>
-        <small>*Note: When paying via Google Pay, please include your Loan Number, Name, and Village in the "Add a Note" section.</small>
+    <div class="payment-box">
+        <h2>Digital Payment Notice</h2>
+        <p>For your convenience, <strong>Navaladi Capitals</strong> accepts payments via Google Pay and All Major Credit/Debit Cards.</p>
+        <p>Official Google Pay ID: <span class="highlight">navaladicapitals@okaxis</span></p>
+        <p>Google Pay Number: <span class="highlight">74026-XXXXX</span></p>
+        <p style="background: #fff8e1; padding: 10px; border: 1px dashed #ffcc00; font-size: 0.9rem;">
+            <strong>Requirement:</strong> While paying, please mention your <strong>Loan ID, Customer Name, and Location</strong> in the payment notes.
+        </p>
     </div>
 
-    <div class="main-content">
-        <div class="branch-card">
-            <h2 class="branch-title">Head Office / Cheyyar Branch</h2>
-            <p><strong>Address:</strong> 7/1 Gopal Street, Cheyyar-604407, Thiruvannamalai DT.</p>
-            <p><strong>Contact:</strong> 74026-00401</p>
-            <p><strong>Manager:</strong> Senthil S.</p>
+    <div class="main-layout">
+        <div class="card">
+            <h2>Cheyyar Head Office</h2>
+            <p><strong>Location:</strong> Navaladi Plaza, Main Road, Cheyyar - 604407.</p>
+            <p><strong>Contact:</strong> +91 74026-XXXXX</p>
+            <p><strong>Working Hours:</strong> 9:30 AM - 6:30 PM (Mon-Sat)</p>
 
-            <h3>Service Collection Areas</h3>
-            <div class="area-lists">
-                <div class="area-item">Anif Nagar</div>
-                <div class="area-item">Arcot Salai</div>
-                <div class="area-item">Arukavoor</div>
-                <div class="area-item">Bus Stand Area</div>
-                <div class="area-item">Neru Nagar</div>
-                <div class="area-item">Paari Nagar</div>
-                <div class="area-item">Maligaipattu</div>
-                <div class="area-item">Vellai-Cheyyar</div>
+            <h3 style="margin-top: 30px;">Areas Covered</h3>
+            <div class="service-grid">
+                <div class="area-tag">Cheyyar Town</div>
+                <div class="area-tag">Anakkavoor</div>
+                <div class="area-tag">Vembakkam</div>
+                <div class="area-tag">Perungattur</div>
+                <div class="area-tag">Moranam</div>
+                <div class="area-tag">Thellar</div>
+                <div class="area-tag">Dusi</div>
+                <div class="area-tag">Mamandur</div>
             </div>
         </div>
 
-        <div class="sidebar">
-            <h3>Other Branches</h3>
+        <div class="nav-sidebar">
+            <h3>Our Services</h3>
             <ul>
-                <li><a href="#">Arungarai Amman Finance</a></li>
-                <li><a href="#">Arungarai Amman Chits</a></li>
-                <li><a href="#">Goodwill Finance</a></li>
-                <li><a href="#">Chengalpattu Branch</a></li>
-                <li><a href="#">Villupuram Branch</a></li>
+                <li><a href="#">Personal Finance</a></li>
+                <li><a href="#">Business Capital</a></li>
+                <li><a href="#">Gold Loans</a></li>
+                <li><a href="#">Vehicle Refinance</a></li>
             </ul>
             <br>
-            <h3>Quick Links</h3>
+            <h3>Other Links</h3>
             <ul>
-                <li><a href="#">Apply for Loan</a></li>
-                <li><a href="#">Management Team</a></li>
-                <li><a href="#">Contact Support</a></li>
+                <li><a href="#">About Navaladi Group</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="footer">
-    Copyright &copy; 2026 Gowtham Amarjothi Finance. All Rights Reserved.
+    &copy; 2026 Navaladi Capitals. All Rights Reserved. <br>
+    Your Trusted Partner in Financial Solutions.
 </div>
 
 </body>
