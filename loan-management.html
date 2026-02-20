@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Loan Management System</h1>
+    </header>
+    <main>
+        <section id="customer-details">
+            <h2>Customer Details</h2>
+            <form id="customer-form">
+                <label for="customer-name">Name:</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+                <label for="customer-id">Customer ID:</label>
+                <input type="text" id="customer-id" name="customer-id" required>
+                <input type="submit" value="Add Customer">
+            </form>
+        </section>
+        <section id="loan-parameters">
+            <h2>Loan Parameters</h2>
+            <form id="loan-form">
+                <label for="loan-amount">Loan Amount:</label>
+                <input type="number" id="loan-amount" name="loan-amount" required>
+                <label for="interest-rate">Interest Rate (%):</label>
+                <input type="number" id="interest-rate" name="interest-rate" required>
+                <label for="loan-term">Loan Term (months):</label>
+                <input type="number" id="loan-term" name="loan-term" required>
+                <input type="submit" value="Add Loan">
+            </form>
+        </section>
+        <section id="transaction-records">
+            <h2>Transaction Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer ID</th>
+                        <th>Loan Amount</th>
+                        <th>Transaction Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transaction records will be populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Loan Management System</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
