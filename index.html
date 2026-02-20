@@ -63,7 +63,30 @@
     </style>
 </head>
 <body>
+// Replace this with YOUR published Google Sheet CSV link
+const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5igMwQkZWRdFNqyoVnDJJcXRFHUkO8F7gSA627crLk68uqjjXFoHzIpEMyexN0GfQ7cpcyKJHYrVG/pub?gid=0&single=true&output=csv';
 
+async function loadBranchData() {
+    const response = await fetch(sheetUrl);
+    const data = await response.text();
+    
+    // Simple logic to split CSV rows
+    const rows = data.split('\n').slice(1); 
+    const listContainer = document.querySelector('.service-grid');
+    listContainer.innerHTML = ''; // Clear old data
+
+    rows.forEach(row => {
+        const columns = row.split(',');
+        if(columns[0]) {
+            const div = document.createElement('div');
+            div.className = 'area-tag';
+            div.innerHTML = `<strong>${columns[0]}</strong><br>${columns[1]}`;
+            listContainer.appendChild(div);
+        }
+    });
+}
+
+loadBranchData();
 <header>
     <div class="logo-text">Navaladi Capitals</div>
     <div class="sub-text">Empowering Your Financial Growth Since 2026</div>
@@ -125,29 +148,6 @@
     &copy; 2026 Navaladi Capitals. All Rights Reserved. <br>
     Your Trusted Partner in Financial Solutions.
 </div>
-// Replace this with YOUR published Google Sheet CSV link
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5igMwQkZWRdFNqyoVnDJJcXRFHUkO8F7gSA627crLk68uqjjXFoHzIpEMyexN0GfQ7cpcyKJHYrVG/pub?gid=0&single=true&output=csv';
 
-async function loadBranchData() {
-    const response = await fetch(sheetUrl);
-    const data = await response.text();
-    
-    // Simple logic to split CSV rows
-    const rows = data.split('\n').slice(1); 
-    const listContainer = document.querySelector('.service-grid');
-    listContainer.innerHTML = ''; // Clear old data
-
-    rows.forEach(row => {
-        const columns = row.split(',');
-        if(columns[0]) {
-            const div = document.createElement('div');
-            div.className = 'area-tag';
-            div.innerHTML = `<strong>${columns[0]}</strong><br>${columns[1]}`;
-            listContainer.appendChild(div);
-        }
-    });
-}
-
-loadBranchData();
 </body>
 </html>
