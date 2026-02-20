@@ -3,151 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navaladi Capitals - Branch Locations</title>
+    <title>Navaladi Capitals | Financial Services</title>
     <style>
         :root {
-            --primary: #1b4332; /* Deep Trust Green */
-            --accent: #d4af37;  /* Metallic Gold */
+            --primary: #1b4332; 
+            --accent: #d4af37;  
             --text-dark: #2d3436;
             --bg-light: #fdfdfd;
         }
 
         body { font-family: 'Georgia', serif; margin: 0; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
         
-        /* Header Section */
         header { 
             background: var(--primary); 
             color: white; 
-            padding: 30px 20px; 
+            padding: 40px 20px; 
             text-align: center; 
             border-bottom: 5px solid var(--accent); 
         }
-        .logo-text { font-size: 2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
-        .sub-text { font-size: 0.9rem; font-style: italic; opacity: 0.8; margin-top: 5px; }
+        .logo-text { font-size: 2.2rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin: 0; }
+        .sub-text { font-size: 1rem; font-style: italic; opacity: 0.9; margin-top: 5px; }
 
         .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; }
 
-        /* Payment/Announcement Box */
+        /* Payment Section */
         .payment-box { 
             background: #fff; 
-            border: 1px solid #ddd;
             border-top: 4px solid var(--primary);
             padding: 20px; 
             margin-bottom: 30px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            border-radius: 8px;
         }
-        .payment-box h2 { color: var(--primary); margin-top: 0; font-size: 1.3rem; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .highlight { font-weight: bold; color: #b91c1c; }
+        .highlight { font-weight: bold; color: #b91c1c; font-family: sans-serif; }
 
-        /* Main Grid */
+        /* Main Layout */
         .main-layout { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media (min-width: 768px) { .main-layout { grid-template-columns: 2fr 1fr; } }
 
-        /* Branch Details */
-        .card { background: white; padding: 25px; border-radius: 4px; border: 1px solid #e1e1e1; }
-        .card h2 { color: var(--primary); margin-top: 0; border-left: 4px solid var(--accent); padding-left: 15px; }
+        /* Cards */
+        .card { background: white; padding: 25px; border-radius: 8px; border: 1px solid #e1e1e1; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .card h2 { color: var(--primary); margin-top: 0; border-left: 4px solid var(--accent); padding-left: 15px; font-size: 1.4rem; }
 
-        /* Service Area Grid */
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 20px; }
-        .area-tag { background: #f1f8f5; padding: 10px; text-align: center; font-size: 0.85rem; border: 1px solid #d1e7dd; border-radius: 3px; }
+        /* Service Grid (Dynamic Data from Sheets) */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .branch-item { background: #f1f8f5; padding: 15px; border: 1px solid #d1e7dd; border-radius: 6px; }
+        .branch-item strong { color: var(--primary); display: block; margin-bottom: 5px; }
 
-        /* Sidebar Navigation */
-        .nav-sidebar { background: #f8f9fa; padding: 20px; border-radius: 4px; border: 1px solid #eee; }
-        .nav-sidebar h3 { font-size: 1.1rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-top: 0; }
-        .nav-sidebar ul { list-style: none; padding: 0; }
-        .nav-sidebar ul li { padding: 12px 0; border-bottom: 1px solid #eee; }
-        .nav-sidebar a { color: var(--primary); text-decoration: none; font-weight: 500; }
-        .nav-sidebar a:hover { color: var(--accent); }
+        /* Calculator Styles */
+        .calc-input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .calc-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .calc-btn:hover { background: #2d6a4f; }
+        #result { margin-top: 15px; font-weight: bold; color: var(--primary); text-align: center; font-size: 1.2rem; }
 
-        .footer { text-align: center; padding: 30px; margin-top: 50px; background: var(--primary); color: white; font-size: 0.85rem; }
+        .footer { text-align: center; padding: 40px; margin-top: 50px; background: var(--primary); color: white; }
     </style>
 </head>
 <body>
-// Replace this with YOUR published Google Sheet CSV link
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5igMwQkZWRdFNqyoVnDJJcXRFHUkO8F7gSA627crLk68uqjjXFoHzIpEMyexN0GfQ7cpcyKJHYrVG/pub?gid=0&single=true&output=csv';
 
-async function loadBranchData() {
-    const response = await fetch(sheetUrl);
-    const data = await response.text();
-    
-    // Simple logic to split CSV rows
-    const rows = data.split('\n').slice(1); 
-    const listContainer = document.querySelector('.service-grid');
-    listContainer.innerHTML = ''; // Clear old data
-
-    rows.forEach(row => {
-        const columns = row.split(',');
-        if(columns[0]) {
-            const div = document.createElement('div');
-            div.className = 'area-tag';
-            div.innerHTML = `<strong>${columns[0]}</strong><br>${columns[1]}`;
-            listContainer.appendChild(div);
-        }
-    });
-}
-
-loadBranchData();
 <header>
-    <div class="logo-text">Navaladi Capitals</div>
-    <div class="sub-text">Empowering Your Financial Growth Since 2026</div>
+    <h1 class="logo-text">Navaladi Capitals</h1>
+    <div class="sub-text">Your Trusted Partner in Financial Growth</div>
 </header>
 
 <div class="container">
     
     <div class="payment-box">
-        <h2>Digital Payment Notice</h2>
-        <p>For your convenience, <strong>Navaladi Capitals</strong> accepts payments via Google Pay and All Major Credit/Debit Cards.</p>
-        <p>Official Google Pay ID: <span class="highlight">navaladicapitals@okaxis</span></p>
-        <p>Google Pay Number: <span class="highlight">74026-XXXXX</span></p>
-        <p style="background: #fff8e1; padding: 10px; border: 1px dashed #ffcc00; font-size: 0.9rem;">
-            <strong>Requirement:</strong> While paying, please mention your <strong>Loan ID, Customer Name, and Location</strong> in the payment notes.
-        </p>
+        <h2 style="margin-top:0; color: var(--primary);">Digital Payment Portal</h2>
+        <p>Official Google Pay Number: <span class="highlight">74026-XXXXX</span></p>
+        <p style="font-size: 0.9rem; color: #555;">Note: Please include <strong>Loan ID</strong> and <strong>Name</strong> in the GPay note section for instant receipt generation.</p>
     </div>
 
     <div class="main-layout">
-        <div class="card">
-            <h2>Cheyyar Head Office</h2>
-            <p><strong>Location:</strong> Navaladi Plaza, Main Road, Cheyyar - 604407.</p>
-            <p><strong>Contact:</strong> +91 74026-XXXXX</p>
-            <p><strong>Working Hours:</strong> 9:30 AM - 6:30 PM (Mon-Sat)</p>
+        <div>
+            <div class="card">
+                <h2>Our Branch Network</h2>
+                <p>Real-time location data managed via Navaladi Operations Cloud.</p>
+                <div id="branch-list" class="service-grid">
+                    <div class="branch-item">Loading branches...</div>
+                </div>
+            </div>
 
-            <h3 style="margin-top: 30px;">Areas Covered</h3>
-            <div class="service-grid">
-                <div class="area-tag">Cheyyar Town</div>
-                <div class="area-tag">Anakkavoor</div>
-                <div class="area-tag">Vembakkam</div>
-                <div class="area-tag">Perungattur</div>
-                <div class="area-tag">Moranam</div>
-                <div class="area-tag">Thellar</div>
-                <div class="area-tag">Dusi</div>
-                <div class="area-tag">Mamandur</div>
+            <div class="card">
+                <h2>About Our Services</h2>
+                <p>We provide specialized capital solutions for Small Businesses, Gold Loans, and Personal Finance requirements across the region.</p>
             </div>
         </div>
 
-        <div class="nav-sidebar">
-            <h3>Our Services</h3>
-            <ul>
-                <li><a href="#">Personal Finance</a></li>
-                <li><a href="#">Business Capital</a></li>
-                <li><a href="#">Gold Loans</a></li>
-                <li><a href="#">Vehicle Refinance</a></li>
-            </ul>
-            <br>
-            <h3>Other Links</h3>
-            <ul>
-                <li><a href="#">About Navaladi Group</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
+        <aside>
+            <div class="card">
+                <h2 style="border-left: 4px solid var(--primary);">Interest Calculator</h2>
+                <label>Loan Amount (₹)</label>
+                <input type="number" id="amount" class="calc-input" placeholder="e.g. 50000">
+                <label>Interest Rate (% Per Year)</label>
+                <input type="number" id="rate" class="calc-input" placeholder="e.g. 12">
+                <label>Tenure (Months)</label>
+                <input type="number" id="months" class="calc-input" placeholder="e.g. 12">
+                <button class="calc-btn" onclick="calculateEMI()">Calculate Interest</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="card" style="background: var(--primary); color: white;">
+                <h3 style="color: var(--accent);">Contact Support</h3>
+                <p>Email: info@navaladicapitals.com</p>
+                <p>Phone: +91 74026-XXXXX</p>
+            </div>
+        </aside>
     </div>
 </div>
 
 <div class="footer">
-    &copy; 2026 Navaladi Capitals. All Rights Reserved. <br>
-    Your Trusted Partner in Financial Solutions.
+    &copy; 2026 Navaladi Capitals. All Rights Reserved.
 </div>
+
+<script>
+    // 1. LOAN CALCULATOR LOGIC
+    function calculateEMI() {
+        const p = document.getElementById('amount').value;
+        const r = document.getElementById('rate').value / 12 / 100;
+        const n = document.getElementById('months').value;
+        
+        if(p && r && n) {
+            const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+            document.getElementById('result').innerHTML = "Monthly EMI: ₹" + emi.toFixed(2);
+        } else {
+            document.getElementById('result').innerHTML = "Please fill all fields";
+        }
+    }
+
+    // 2. GOOGLE SHEETS DATABASE LOGIC
+    // Replace the URL below with your "Published to Web" CSV link
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5igMwQkZWRdFNqyoVnDJJcXRFHUkO8F7gSA627crLk68uqjjXFoHzIpEMyexN0GfQ7cpcyKJHYrVG/pub?output=csv';
+
+    async function fetchBranches() {
+        try {
+            const response = await fetch(sheetUrl);
+            const data = await response.text();
+            const rows = data.split('\n').slice(1); // Skip header row
+            const container = document.getElementById('branch-list');
+            
+            if(rows.length > 0 && rows[0] !== "") {
+                container.innerHTML = ''; // Clear loading text
+                rows.forEach(row => {
+                    const col = row.split(',');
+                    if(col[0]) {
+                        container.innerHTML += `
+                            <div class="branch-item">
+                                <strong>${col[0]}</strong>
+                                <small>Manager: ${col[1] || 'N/A'}</small><br>
+                                <small>Contact: ${col[2] || 'N/A'}</small>
+                            </div>`;
+                    }
+                });
+            }
+        } catch (error) {
+            console.log("To see live data, publish your Google Sheet as CSV and paste link in the script.");
+        }
+    }
+
+    fetchBranches();
+</script>
 
 </body>
 </html>
